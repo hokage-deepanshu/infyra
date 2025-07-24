@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import './Homecontent.css';
 import bgImage from '../assets/download.jpg'; 
-import kd from '../assets/Soil Nutrient Intelligence.png'; // Kisan Drishti image
-import droneTech from '../assets/img2.jpg'; // Drone Tech image
-import ddd from '../assets/about.png'; // Edge-AI Infrastructure image
-// optional: if you separate styles
+import kd from '../assets/Soil Nutrient Intelligence.png'; 
+import droneTech from '../assets/img2.jpg';
+import ddd from '../assets/about.png';
 
 const Homecontent = () => {
   const handleKnowMoreClick = () => {
@@ -15,6 +14,7 @@ const Homecontent = () => {
   };
 
   return (
+    // Section aur background styles ko JSX me hi rehne dete hain, kyunki dynamic image hai
     <div
       className="features-section"
       style={{
@@ -25,115 +25,61 @@ const Homecontent = () => {
       }}
     >
       <div className="features-grid">
-        {/* Kisan Drishti */}
-        <div className="feature-card left-image">
-          
-            <div
-              className="placeholder-image"
-              style={{
-                background: 'linear-gradient(135deg, #16a34a, #22c55e)',
-              }}
-            >
-              <img
-                src={kd}
-                alt="Kisan Drishti"
-                height="200px"
-                width="350px"
-              />
-            </div>
-          
+
+        {/* Card 1: Kisan Drishti */}
+        <div className="feature-card">
+          <div className="feature-image">
+             {/* Dekho, yahan se height aur width hata diya hai */}
+            <img src={kd} alt="Kisan Drishti" />
+          </div>
           <div className="feature-content">
-            <h1
-              style={{
-                background: 'linear-gradient(135deg,rgb(61, 133, 239),rgb(0, 84, 186))',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >
-              KISAN DRISHTI
-            </h1>
+            <h1 className="h1-green">KISAN DRISHTI</h1>
             <p>
               Revolutionary soil-level diagnostics that empower farmers with precise, real-time agricultural intelligence.
             </p>
             <div className="feature-stats">
               <span>50+ Parameters</span>
-              <a
-                href="https://kisandrishti.in"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://kisandrishti.in" target="_blank" rel="noopener noreferrer">
                 <button>Click To View</button>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Our Courses */}
+        {/* Card 2: Our Courses */}
         <div className="feature-card right-image">
           <div className="feature-content">
-            <h1>OUR COURSES</h1>
+            <h1 className="h1-blue">OUR COURSES</h1>
             <p>
               AI-piloted drones transforming agri-logistics with precision mapping, crop monitoring, and automated field operations.
             </p>
             <div className="feature-stats">
               <span>Autonomous Flight</span>
-              <a
-                href="https://hokage-deepanshu.github.io/dronetech/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://hokage-deepanshu.github.io/dronetech/" target="_blank" rel="noopener noreferrer">
                 <button>Click To View</button>
               </a>
             </div>
           </div>
           <div className="feature-image">
-            <div
-              className="placeholder-image2"
-              style={{
-                background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
-              }}
-            >
-              <img
-                src={droneTech}
-                alt="Drone Tech"
-                height="350px"
-                width="450px"
-              />
-            </div>
+            {/* Yahan se bhi height aur width hata diya hai */}
+            <img src={droneTech} alt="Drone Tech" />
           </div>
         </div>
 
-        {/* Edge-AI Infrastructure */}
-        <div className="feature-card left-image">
+        {/* Card 3: More About Us */}
+        <div className="feature-card">
           <div className="feature-image">
-            <div
-              className="placeholder-image"
-              style={{
-
-                fontSize: '5rem',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <img
-                src={ddd}
-                alt="Kisan Drishti"
-                height="200px"
-                width="350px"
-              />
-            </div>
+            {/* Aur yahan se bhi! */}
+            <img src={ddd} alt="About Us illustration" />
           </div>
           <div className="feature-content">
-            <h1>MORE ABOUT US</h1>
+            <h1 className="h1-gradient">MORE ABOUT US</h1>
             <p>
-              Infyra Innovations is a deeptech systems company building scalable intelligence across smart agriculture, autonomous drones, and edge-AI infrastructure — with and for Bharat's next-generation builders.
+              Infyra Innovations is a deeptech systems company building scalable intelligence across smart agriculture, autonomous drones, and edge-AI infrastructure.
             </p>
             <div className="feature-stats">
               <span>Edge Computing</span>
-              
-                <span onClick={handleKnowMoreClick}>Know More</span>
-              
+              <span onClick={handleKnowMoreClick} className="know-more-btn">Know More</span>
             </div>
           </div>
         </div>

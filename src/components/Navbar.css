@@ -1,51 +1,117 @@
-/* 'nav' selector ko '.navbar' class se badal diya gaya hai. Yeh best practice hai. */
+/* =================================
+   BASE NAVBAR STYLES (COMMON FOR ALL)
+   ================================= */
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: linear-gradient(90deg, #0e0e0e, rgba(48, 48, 48, 0));
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(6px);
+    background: linear-gradient(90deg, #0e0e0e, rgba(48, 48, 48, 0.5));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
-    padding: 1rem 3rem;
+    padding: 0.5rem 5%; /* Padding ko percentage me rakha hai for flexibility */
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    /* --- YEH LINE ADD KAREIN --- */
-    /* Yeh hide/show ke transform ko smoothly animate karegi */
-    transition: transform 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out, background-color 0.3s ease;
 }
 
-/* --- YEH NAYA RULE ADD KAREIN --- */
-/* Yeh class tab lagegi jab navbar ko hide karna hoga */
 .navbar--hidden {
-    transform: translateY(-100%);
+    transform: translateY(-110%);
 }
 
-
-/* Baaki saari CSS bilkul waisi hi rahegi */
 .logo img {
-    height: 100px;
-    width: 280px;
+    height: 60px; /* Choti screens par logo ka size aaram se fit ho jayega */
+    width: auto;
     transition: transform 0.3s ease;
 }
 .logo:hover img {
     transform: scale(1.05);
 }
 
+
+/* =================================
+   MOBILE STYLES (DEFAULT - UPTO 768px)
+   ================================= */
+
+/* Desktop wala contact button mobile par hide kar do */
+.contact-btn {
+    display: none;
+}
+/* Mobile wala contact button jo menu ke andar hai */
+.contact-btn-mobile button {
+    padding: 12px 25px;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+
+/* Hamburger Menu Icon Styling */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1005; /* Links ke upar rahe */
+}
+.hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hamburger animation jab menu open ho */
+.navbar.menu-open .line1 {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+.navbar.menu-open .line2 {
+    opacity: 0;
+}
+.navbar.menu-open .line3 {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+
+/* Navigation Links (Mobile View) */
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2.5rem;
+    flex-direction: column; /* Links ko vertically stack karo */
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem; /* Links ke beech me gap */
+    
+    position: fixed; /* Poori screen cover kare */
+    top: 0;
+    left: 100%; /* Shuru me screen ke bahar rakho */
+    width: 100%;
+    height: 100vh; /* Poori height le lo */
+    background-color: #0e0e0e; /* Solid background for mobile menu */
+    
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.nav-links.active {
+    transform: translateX(-100%); /* Screen ke andar le aao */
 }
 
 .nav-links a {
     text-decoration: none;
     color: #ffffff;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1.5rem; /* Mobile par bada font size */
     position: relative;
     padding-bottom: 8px;
     transition: color 0.3s ease;
@@ -56,56 +122,88 @@
     color: #2473d4;
 }
 
+/* Badi screens par hi underline effect dikhana hai */
 .nav-links a::after {
     content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, #60a5fa, #3b82f6);
-    transition: width 0.3s ease;
+    display: none; /* Mobile par hide rakho */
 }
 
-.nav-links a:hover::after, .nav-links a.active-link::after {
-    width: 100%;
+/* Hide mobile contact button in the list by default */
+.contact-btn-mobile {
+    display: block; /* Mobile menu me dikhao */
 }
 
-.contact-btn {
-    padding: 10px 20px;
-    background-color: #FFD700;
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+/* ================================================
+   TABLET & DESKTOP STYLES (768px and above)
+   ================================================ */
+@media (min-width: 768px) {
+    .navbar {
+        padding: 1rem 3rem; /* Badi screen par original padding */
+    }
 
-.contact-btn:hover {
-    background-color: #ffff00;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
+    .logo img {
+        height: 80px; /* Badi screen par thoda bada logo */
+    }
 
-/* ====== SECTION MANAGEMENT ====== */
-.section {
-    padding: 8rem 2rem 2rem;
-    display: none;
-    animation: fadeIn 0.8s ease-in-out;
-}
+    /* Hamburger menu ko hide kar do */
+    .hamburger {
+        display: none;
+    }
 
-.section.active {
-    display: block;
-}
+    /* Nav links ko wapas horizontal layout me lao */
+    .nav-links {
+        position: static;
+        flex-direction: row;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        transform: none; /* Reset transform */
+        transition: none;
+        gap: 2.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem; /* Font size normal karo */
+    }
 
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-}
+    /* Underline effect ko wapas show karo */
+    .nav-links a::after {
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, #60a5fa, #3b82f6);
+        transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after, .nav-links a.active-link::after {
+        width: 100%;
+    }
+    
+    /* Mobile-only contact button hide karo */
+    .contact-btn-mobile {
+        display: none;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    /* Desktop-only contact button show karo */
+    .contact-btn {
+        display: block; /* Badi screens par show karo */
+        padding: 10px 20px;
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+        background-color: #ffff00;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
 }

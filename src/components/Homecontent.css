@@ -1,186 +1,168 @@
-  /* ====== FEATURES SECTION (IN HOME PAGE) ====== */
-                .features-section {
-                    padding-top: 40px;
-                        /* Optional */
-                        margin: 0;
-                        background-color: transparent;
-                        /* Avoid white gaps */
-                        min-height: 100vh;
-                        opacity: 1;
-                        transform: none;
-                }
-        
-                .features-grid {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 4rem;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                }
-        
-                .feature-card {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 3rem;
-                    align-items: center;
-                    background: rgba(255, 255, 255, 0.03);
-                    border-radius: 25px;
-                    padding: 3rem;
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                    transition: all 0.4s ease;
-                }
-        
-                .feature-card:hover {
-                    transform: translateY(-10px);
-                    background: rgba(0, 0, 0, 0.05);
-                    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-                }
-        
-                .feature-card.right-image .feature-content {
-                    order: 1;
-                }
-        
-                .feature-card.right-image .feature-image {
-                    order: 2;
-                    display: flex;
-                    justify-content: flex-end;
-                }
-        
-        /* ====== FIXED SQUARE IMAGE PLACEHOLDER ====== */
-        .feature-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        /* ====== FEATURES SECTION (IN HOME PAGE) ====== */
-.features-section {
-  margin-top: 6rem;
+/* =========================================
+   BASE & MOBILE STYLES (UPTO 800px)
+   ========================================= */
 
-  /* ✅ Add background below */
-  background-image: url("/assets/download.jpg"); /* use your actual image path */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 4rem 2rem;
+.features-section {
+  padding: 4rem 20px; /* Mobile par kam horizontal padding */
+  min-height: 100vh;
 }
 
-        .placeholder-image { 
-            width: 250px; 
-            height: 250px; 
-            border-radius: 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 4rem; 
-            overflow: hidden;
-            background: rgba(255, 255, 255, 70%);
-            background-image: url("Soil\ Nutrient\ Intelligence.png");
-            /* Placeholder image URL */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            flex-shrink: 0;
-        }
-        
-        .placeholder-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 20px;
-        }
-        
-           
+.features-grid {
+  display: flex;
+  flex-direction: column; /* Mobile par cards ek ke neeche ek aayenge */
+  gap: 2.5rem; /* Cards ke beech me thoda kam gap */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column; /* Mobile par image aur content bhi upar-neeche */
+  gap: 1.5rem;
+  background: rgba(10, 10, 10, 0.4); /* Thoda dark background for contrast */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem; /* Mobile par kam padding */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Hover effect ke liye important */
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Image ko responsive banane ka tareeka */
+.feature-image {
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.feature-image img {
+  width: 100%;
+  height: 100%;
+  /* aspect-ratio: 16 / 10; /* Image ka ratio maintain rakhega */
+  object-fit: cover; /* Image ko bina stretch kiye fit karega */
+  display: block; /* Extra space hatane ke liye */
+}
+
+.feature-content {
+  text-align: center; /* Mobile par text center me accha lagega */
+}
+
+/* H1 Titles ki styling */
 .feature-content h1 {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 6vw, 2.2rem); /* Responsive font size */
   font-weight: 900;
   margin-bottom: 1rem;
-  background:linear-gradient(45deg, #0040a1, #0154ba);
+  padding-bottom: 5px;
+}
+
+/* Alag-alag H1 ke liye gradients */
+h1.h1-green {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  display: inline-block;
-  box-shadow: inset 0 -3px 0 rgba(59, 130, 246, 0.5); /* underline effect */
 }
-
+h1.h1-blue {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+h1.h1-gradient {
+  background: linear-gradient(135deg, rgb(61, 133, 239), rgb(0, 84, 186));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 .feature-content p {
-    font-size: 1.3rem;
-    color: #000000;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  color: #e5e7eb; /* Off-white for readability */
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
+/* Stats aur Buttons ka container */
 .feature-stats {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  justify-content: center; /* Mobile par buttons ko center me rakho */
+  flex-wrap: wrap; /* Agar buttons zyada ho toh agli line me aa jaye */
 }
-        /* ====== ENHANCED FEATURE STATS BUTTONS ====== */
-        .feature-stats span,
-        .feature-stats button {
-            background: rgba(255, 255, 255, 0.932);
-            color: #3381e0;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(59, 130, 246, 0.4);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
-        }
 
-        /* Subtle glow effect */
-        .feature-stats button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
-            transition: left 0.6s ease;
-        }
+.feature-stats span,
+.feature-stats button,
+.feature-stats a button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px; /* Pill shape buttons */
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
 
-        .feature-stats button:hover::before {
-            left: 100%;
-        }
+.feature-stats a {
+  text-decoration: none;
+}
 
-        .feature-stats button:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 1));
-            color: #2563eb;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 
-                0 8px 25px rgba(59, 130, 246, 0.4),
-                0 4px 12px rgba(59, 130, 246, 0.2);
-            border-color: rgba(59, 130, 246, 0.6);
-        }
+.feature-stats span:hover,
+.feature-stats button:hover,
+.feature-stats a button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
 
-        .feature-stats button:active {
-            transform: translateY(-1px) scale(1.01);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-            transition: all 0.1s ease;
-        }
+.feature-stats .know-more-btn {
+  background: #2563eb;
+}
 
-        /* Optional: Add a subtle pulse animation */
-        .feature-stats button:hover {
-            animation: subtle-pulse 2s infinite;
-        }
+/* ======================================================
+   TABLET & DESKTOP STYLES (800px se UPAR ki screens)
+   ====================================================== */
 
-        @keyframes subtle-pulse {
-            0%, 100% {
-                box-shadow: 
-                    0 8px 25px rgba(59, 130, 246, 0.4),
-                    0 4px 12px rgba(59, 130, 246, 0.2);
-            }
-            50% {
-                box-shadow: 
-                    0 8px 30px rgba(59, 130, 246, 0.5),
-                    0 4px 15px rgba(59, 130, 246, 0.3);
-            }
-        }
+@media (min-width: 800px) {
+  .features-section {
+    padding: 6rem 40px; /* Badi screens par zyada padding */
+  }
+
+  .features-grid {
+    gap: 4rem; /* Bada gap */
+  }
+
+  /* Card layout ko grid me badal do */
+  .feature-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 column layout */
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
+  }
+
+  .feature-content {
+    text-align: left; /* Text ko left align kar do */
+  }
+  
+  .feature-stats {
+    justify-content: flex-start; /* Buttons ko left align kar do */
+  }
+
+  /* Right image waale card ke liye image aur content ki position badal do */
+  .feature-card.right-image .feature-content {
+    order: 1;
+  }
+  .feature-card.right-image .feature-image {
+    order: 2;
+  }
+}

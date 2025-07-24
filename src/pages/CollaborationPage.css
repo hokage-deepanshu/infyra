@@ -1,18 +1,19 @@
-/* src/pages/CollaborationPage.css */
+/* ==================================================== */
+/*      COLLABORATION PAGE - SIRF RESPONSIVE FIX        */
+/* ==================================================== */
 
 /* -- Page Container and Background -- */
 .collaboration-page-container {
-  /* !! PATH CHECK KAR LENA !! - Maan lo image public/images/collaboration-bg.jpg par hai */
   background-image: linear-gradient(rgba(82, 83, 84, 0.712), rgba(112, 112, 113, 0.641)), url('/collabbg.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Aapka original style */
   overflow-x: hidden;
 }
 
 /* -- Main content area -- */
 .collaboration-content {
-  padding: 120px 2rem 5rem; /* Navbar ke liye top padding */
+  padding: 120px 20px 5rem; /* Padding ko thoda mobile-friendly kiya */
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -22,34 +23,34 @@
   text-align: center;
   margin-bottom: 4rem;
 }
-
 .collaboration-header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: #80e6f8; /* Dark Blue */
+  color: #80e6f8;
   margin-bottom: 0.5rem;
 }
-
 .collaboration-header p {
-  font-size: 1.5rem;
-  color: #dcdede; /* Muted Blue */
+  font-size: 1.25rem; /* Thoda chota kiya taaki mobile par fit ho */
+  color: #dcdede;
   max-width: 700px;
   font-weight: 400;
   margin: 0 auto;
 }
 
-/* -- The Grid of Collaborator Cards -- */
+/* -- Collaborator Cards ka Grid -- */
 .collaborators-grid {
   display: flex;
-  justify-content: center;  /* horizontally center */
-  align-items: center;      /* vertically center (if needed) */
-  flex-wrap: wrap;          /* allow multiple rows */
-  gap: 2rem;                /* spacing between cards */
-  margin: 40px auto;
-  max-width: 1200px;        /* optional: to control layout width */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4rem; /* Upar wali image ke liye gap rakha hai */
+  margin: 60px auto 0;
+  max-width: 1200px;
 }
 
-/* -- The Card Itself (inspired by your image) -- */
+/* ============================================== */
+/* -- YEH CARD KA RESPONSIVE FIX HAI           -- */
+/* ============================================== */
 .collaborator-card {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(15px);
@@ -59,25 +60,28 @@
   box-shadow: 0 8px 32px 0 rgba(0, 30, 80, 0.1);
   text-align: center;
   position: relative;
-  padding-top: 60px;
-  padding-bottom: 20px;
-  height: 304px;
-  width: 280px;             /* card width */
+  
+  /* FIX: Fixed width aur height hata di */
+  width: 280px; /* Width ko barkarar rakha hai, grid isko handle karega */
+  height: auto; /* Height ab content ke hisaab se adjust hogi */
+
+  /* Padding ko image ke hisaab se set kiya */
+  padding: 60px 1.5rem 1.5rem;
+  
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
 }
-
-
 .collaborator-card.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .collaborator-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 16px 40px 0 rgba(0, 30, 80, 0.2);
 }
 
-/* The Overlapping Circular Image */
+/* Overlapping Image */
 .collaborator-image {
   width: 120px;
   height: 120px;
@@ -86,49 +90,40 @@
   box-shadow: 0 4px 15px rgba(0, 30, 80, 0.15);
   object-fit: cover;
   background-color: #eee;
-  
-  /* Magic Positioning */
   position: absolute;
-  top: -60px; /* card ki height ka aadha upar */
+  top: -60px;
   left: 50%;
   transform: translateX(-50%);
 }
-
 .card-info {
-    padding: 2rem;
+    padding: 1rem 0 0 0; /* Upar se thodi padding */
 }
-
 .collaborator-name {
   font-size: 1.5rem;
   font-weight: 600;
   color: #0d1b3f;
   margin: 0.5rem 0;
 }
-
 .collaborator-title {
   font-size: 1rem;
   color: #6a7895;
   margin: 0 0 1.5rem 0;
 }
-
-/* LinkedIn Icon */
 .linkedin-link {
   padding-top: 12px;
   display: inline-block;
   color: #0077b5;
   transition: transform 0.3s ease;
 }
-
 .linkedin-link svg {
   width: 28px;
   height: 28px;
 }
-
 .linkedin-link:hover {
   transform: scale(1.15);
 }
 
-/* -- Logo Slideshow Section -- */
+/* -- Logo Slideshow (Original Styles) -- */
 .slideshow-section {
     margin-top: 6rem;
 }
@@ -138,17 +133,16 @@
   margin: auto;
   overflow: hidden;
   position: relative;
-  
   width: 100%;
   padding: 1rem 0;
 }
-
+/* ORIGINAL WHITE FADE EFFECT */
 .logo-slideshow::before,
 .logo-slideshow::after {
   content: "";
   height: 100%;
   position: absolute;
-  width: 15%; /* Fade effect width */
+  width: 15%;
   z-index: 1;
   top: 0;
 }
@@ -160,18 +154,15 @@
   right: 0;
   background: linear-gradient(to left, rgba(240, 245, 255, 1) 0%, rgba(240, 245, 255, 0) 100%);
 }
-
 .slide-track {
   display: flex;
   animation: scroll 40s linear infinite;
-  width: calc(250px * 12); /* 250px per logo * 6 logos * 2 (for doubling) */
+  width: calc(250px * 12);
 }
-
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-250px * 6)); } /* -250px * original number of logos */
+  100% { transform: translateX(calc(-250px * 6)); }
 }
-
 .slide {
   height: 100px;
   width: 250px;
@@ -180,17 +171,24 @@
   justify-content: center;
   padding: 15px;
 }
-
 .slide img {
   max-width: 200px;
   height: auto;
   max-height: 200px;
-  
- 
   transition: all 0.3s ease;
 }
 .slide:hover img {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.1);
+}
+
+/* ================================================ */
+/* -- MEDIA QUERY SIRF MOBILE PERFORMANCE KE LIYE -- */
+/* ================================================ */
+@media (max-width: 768px) {
+  .collaboration-page-container {
+    /* Mobile par 'fixed' scroll ajeeb lagta hai, isliye 'scroll' kar diya */
+    background-attachment: scroll;
+  }
 }

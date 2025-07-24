@@ -1,52 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css'; // Is file ko banana zaroori hai
-import logo from '../assets/Infyra Logo-Photoroom.png'; 
-import { useNavigate } from 'react-router-dom';// Path check kar lein
+import logo from '../assets/Infyra Logo-Photoroom.png'; // Path check kar lein
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-// Component ka naam Capital letter se shuru hona best practice hai.
 function Navbar({ showSection }) {
-  // 1. Logic ko seedha component ke andar rakhein
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  // Mobile menu ke liye state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const controlNavbar = () => {
-    // Thoda behtar logic: page ke top par navbar hide na ho
     if (window.scrollY > 100 && window.scrollY > lastScrollY) {
-      setShow(false); // Neeche scroll karne par hide karo
+      setShow(false);
     } else {
-      setShow(true);  // Upar scroll karne par show karo
+      setShow(true);
     }
     setLastScrollY(window.scrollY);
   };
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar);
-
-    // Cleanup function
     return () => {
       window.removeEventListener('scroll', controlNavbar);
     };
   }, [lastScrollY]);
+
   const navigate = useNavigate();
 
+  // Menu toggle function
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  
+  // Link click karne par menu band ho jaye
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
 
-
-  // 2. 'show' state ke hisab se className ko conditionally add karein
   return (
-    <nav className={`navbar ${!show && 'navbar--hidden'}`}>
-      <a href="#" className="logo" onClick={() => showSection('home')}>
-        <img src={logo} height="100px" width="350px" alt="Infyra Logo" />
+    // 'menu-open' class ko conditionally add karein
+    <nav className={`navbar ${!show && 'navbar--hidden'} ${isMenuOpen && 'menu-open'}`}>
+      <a href="#" className="logo" onClick={() => { showSection('home'); handleLinkClick(); }}>
+        <img src={logo} alt="Infyra Logo" />
       </a>
 
-      <ul className="nav-links">
-  <li><Link to="/home">Home</Link></li>
-  <li><Link to="/gallery">Gallery</Link></li>
-  <li><Link to="/courses">Courses</Link></li>
-  <li><Link to="/products">Products</Link></li>
-  <li><Link to="/collaborations">Collaborations</Link></li>
-  <li><Link to="/about">About</Link></li>
-</ul>
+      {/* Yeh hai Hamburger Menu ka button jo sirf mobile par dikhega */}
+      <div className="hamburger" onClick={toggleMenu}>
+        <div className="line line1"></div>
+        <div className="line line2"></div>
+        <div className="line line3"></div>
+      </div>
+
+      {/* Nav links 'active' class ke sath show/hide honge */}
+      <ul className={`nav-links ${isMenuOpen && 'active'}`}>
+        <li><Link to="/home" onClick={handleLinkClick}>Home</Link></li>
+        <li><Link to="/gallery" onClick={handleLinkClick}>Gallery</Link></li>
+        <li><Link to="/courses" onClick={handleLinkClick}>Courses</Link></li>
+        <li><Link to="/products" onClick={handleLinkClick}>Products</Link></li>
+        <li><Link to="/collaborations" onClick={handleLinkClick}>Collaborations</Link></li>
+        <li><Link to="/about" onClick={handleLinkClick}>About</Link></li>
+        {/* Contact button ko mobile menu ke andar bhi daal diya hai */}
+        <li className="contact-btn-mobile">
+            <button onClick={() => { navigate('/contact'); handleLinkClick(); }}>Contact Us</button>
+        </li>
+      </ul>
+
       <button className="contact-btn" onClick={() => navigate('/contact')}>Contact Us</button>
     </nav>
   );

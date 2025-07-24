@@ -1,143 +1,163 @@
-/* src/pages/ProductsPage.css */
+/* ================================================================= */
+/*      PRODUCTS PAGE - FINAL CODE (SIRF MOBILE PAR CROP)          */
+/* ================================================================= */
 
-/* -- Page Container aur Background -- */
+/* -- Step 1: Page Container - YEH DESKTOP KA DEFAULT STYLE HAI -- */
 .products-page-container {
-  /* !! PATH CHECK KAR LENA !! - Maan lo image public/images/product-bg.jpg par hai */
-  background-image: linear-gradient(rgba(10, 20, 30, 0.85), rgba(10, 20, 30, 0.115)), url('download.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   color: #fff;
   min-height: 100vh;
-  padding-top: 80px; /* Navbar ki height ke liye jagah */
+  padding-top: 80px; 
+  
+  background-image: url('download.jpg');
+  background-size: cover; 
+  /* Desktop par image center me rahegi */
+  background-position: center center;
+  /* Desktop par background sticky rahega */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 /* -- Page Header -- */
 .products-hero {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 2rem 20px;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7);
 }
-
 .products-hero h1 {
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 7vw, 3rem);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
-
 .products-hero p {
-  font-size: 1.2rem;
-  color: #ccc;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  color: #f0f0f0;
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* -- Dono product cards ko contain karne wala area -- */
+/* -- Product Cards ka Area -- */
 .product-showcase-area {
   display: flex;
-  justify-content: center; /* Center aalign karega dono cards ko */
-  align-items: flex-start; /* Upar se align rakhega */
-  gap: 3rem;
-  padding: 2rem;
-  max-width: 1300px; /* Max width jisse badi screen par faile na */
-  margin: 0 auto; /* Horizontally center */
-  flex-wrap: wrap; /* Chhoti screen par ek ke neeche ek aayega */
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem 20px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-
-/* -- Single Product Card ka Style -- */
+/* -- Single Product Card -- */
 .product-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(15, 25, 40, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 2rem;
   width: 100%;
-  max-width: 450px; /* Har card ki max width */
+  max-width: 450px;
   text-align: center;
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-
-  /* Animation ke liye setup */
   opacity: 0;
   transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, opacity 0.6s ease-out;
 }
-
 .product-card.left-card {
   animation: slide-from-left 0.8s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 .product-card.right-card {
   animation: slide-from-right 0.8s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-
-/* Hover Effect */
 .product-card:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-10px);
   box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-/* Product ka naam */
 .product-name {
-  font-size: 2.3rem;
+  font-size: clamp(1.8rem, 6vw, 2.3rem);
   margin: 0 0 1.5rem 0;
   font-weight: 600;
   color: #ffffff;
 }
-
-/* Image container jisse image aache se fit ho */
 .product-image-container {
   margin-bottom: 1.5rem;
 }
-
 .product-image {
-  max-width: 150%;
-  height: 250px;
-  object-fit: contain; /* Agar image puri dikhani hai, contain best hai. Varna 'cover' use karein */
+  width: 100%;
+  max-width: 300px;
+  height: 200px;
+  object-fit: contain;
   transition: transform 0.4s ease;
 }
-
 .product-card:hover .product-image {
     transform: scale(1.05);
 }
-
-/* Description */
 .product-description {
-  font-size: 1.6rem;
-  color: #ffffff;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  color: #e5e7eb;
   line-height: 1.6;
-  flex-grow: 1; /* Button ko hamesha neeche rakhega */
+  flex-grow: 1;
   margin-bottom: 2rem;
 }
-
-/* Button */
 .product-button {
   display: inline-block;
-  background-color: #00bfff; /* Deep sky blue color */
+  background-color: #00bfff;
   color: #fff;
   padding: 12px 28px;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
   font-size: 1rem;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: auto; /* Button ko card ke neeche dhakelega */
+  margin-top: auto;
 }
-
 .product-button:hover {
   background-color: #009acd;
   transform: scale(1.05);
 }
 
-
-/* Keyframe Animations */
+/* Animations */
 @keyframes slide-from-left {
   from { opacity: 0; transform: translateX(-50px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes slide-from-right {
   from { opacity: 0; transform: translateX(50px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+/* ======================================================== */
+/*  Step X: SIRF MOBILE KE LIYE SPECIAL RULES             */
+/* ======================================================== */
+/* Jab screen 900px se choti hogi, tab yeh style lagega */
+@media (max-width: 900px) {
+  .products-page-container {
+    /* Image ko drone waale hisse par focus karwayega */
+    background-position: right center;
+    /* Mobile par 'fixed' scroll ajeeb lagta hai, isliye 'scroll' kar diya */
+    background-attachment: scroll;
+  }
+  
+  .product-showcase-area {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+/* Yeh desktop par card layout ke liye hai */
+@media (min-width: 901px) {
+    .product-showcase-area {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+    .product-image {
+        height: 250px;
+    }
+    .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
 }
