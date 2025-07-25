@@ -8,7 +8,7 @@
   min-height: 100vh;
   padding-top: 80px; 
   
-  background-image: url('download.jpg');
+  background-image: url('/download.jpg');
   background-size: cover; 
   /* Desktop par image center me rahegi */
   background-position: center center;
