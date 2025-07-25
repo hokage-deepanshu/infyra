@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ ADD THIS LINE
 import './Homecontent.css';
 import bgImage from '../assets/download.jpg'; 
 import kd from '../assets/Soil Nutrient Intelligence.png'; 
@@ -6,6 +7,8 @@ import droneTech from '../assets/img2.jpg';
 import ddd from '../assets/about.png';
 
 const Homecontent = () => {
+  const navigate = useNavigate(); // ✅ INITIALIZE NAVIGATE
+
   const handleKnowMoreClick = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -14,7 +17,6 @@ const Homecontent = () => {
   };
 
   return (
-    // Section aur background styles ko JSX me hi rehne dete hain, kyunki dynamic image hai
     <div
       className="features-section"
       style={{
@@ -29,7 +31,6 @@ const Homecontent = () => {
         {/* Card 1: Kisan Drishti */}
         <div className="feature-card">
           <div className="feature-image">
-             {/* Dekho, yahan se height aur width hata diya hai */}
             <img src={kd} alt="Kisan Drishti" />
           </div>
           <div className="feature-content">
@@ -61,7 +62,6 @@ const Homecontent = () => {
             </div>
           </div>
           <div className="feature-image">
-            {/* Yahan se bhi height aur width hata diya hai */}
             <img src={droneTech} alt="Drone Tech" />
           </div>
         </div>
@@ -69,7 +69,6 @@ const Homecontent = () => {
         {/* Card 3: More About Us */}
         <div className="feature-card">
           <div className="feature-image">
-            {/* Aur yahan se bhi! */}
             <img src={ddd} alt="About Us illustration" />
           </div>
           <div className="feature-content">
@@ -79,7 +78,9 @@ const Homecontent = () => {
             </p>
             <div className="feature-stats">
               <span>Edge Computing</span>
-              <span onClick={handleKnowMoreClick} className="know-more-btn">Know More</span>
+              <button className="know-more-btn" onClick={() => navigate('/gallery')}>
+                Know More
+              </button>
             </div>
           </div>
         </div>
