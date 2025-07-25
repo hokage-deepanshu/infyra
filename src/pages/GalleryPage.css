@@ -260,10 +260,16 @@
     gap: 2rem;
     padding: 2rem;
   }
-  .slide-image {
-    width: 45%;
-    max-height: 300px;
-  }
+.slide-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  max-height: 250px;
+  object-fit: fill; /* from 'contain' to 'cover' */
+  border-radius: 15px;
+  overflow: hidden;
+}
+
   .slide-content {
     width: 55%;
   }
