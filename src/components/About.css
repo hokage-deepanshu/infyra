@@ -7,8 +7,8 @@
   /* FIX 1: Navbar ke liye space banane ka sabse aasan tareeka */
   /* 15rem bahut zyada tha, ise 100px kiya hai */
   padding: 100px 0 5rem; 
+background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(80, 82, 82, 0.4)), url('/aboutbg.png') no-repeat center center/cover;
 
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(80, 82, 82, 0.4)), url('aboutbg.png') no-repeat center center/cover;
   min-height: 100vh;
   display: flex;
   align-items: center;
